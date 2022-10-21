@@ -4,8 +4,9 @@ const {
     getToursByIdService,
     updateTourByIdService,
     getTopToursService,
-} = require("../services/tour.services");
+} = require("../services/tourServices");
 
+// get all tours
 module.exports.getTours = async (req, res, next) => {
     try {
         const tours = await getToursService(req.query);
@@ -16,6 +17,7 @@ module.exports.getTours = async (req, res, next) => {
     }
 };
 
+// create a tour
 module.exports.createTours = async (req, res, next) => {
     try {
         const tour = await createToursService(req.body);
@@ -26,6 +28,7 @@ module.exports.createTours = async (req, res, next) => {
     }
 };
 
+// get a single tour data
 exports.getTourById = async (req, res, next) => {
     try {
         const { id } = req.params;
@@ -37,6 +40,7 @@ exports.getTourById = async (req, res, next) => {
     }
 };
 
+// update a single tour data
 exports.updateTourById = async (req, res, next) => {
     try {
         const { id } = req.params;
@@ -48,6 +52,7 @@ exports.updateTourById = async (req, res, next) => {
     }
 };
 
+// get 3 trending tour info
 exports.getTrendingTour = async (req, res, next) => {
     try {
         const queries = { sort: "-viewed", limit: 3 };
@@ -59,6 +64,7 @@ exports.getTrendingTour = async (req, res, next) => {
     }
 };
 
+// get most cheapest 3 tour info
 exports.getCheapestTour = async (req, res, next) => {
     try {
         const queries = { sort: "price", limit: 3 };

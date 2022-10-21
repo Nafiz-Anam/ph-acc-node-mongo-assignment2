@@ -8,14 +8,13 @@ const tourSchema = mongoose.Schema(
             trim: true,
             unique: [true, "Tour name must be unique"],
         },
-        image: {
+        photo: {
             type: String,
             required: true,
         },
         location: {
             type: String,
             required: [true, "Location is required."],
-            unique: [true, "Location must be unique"],
         },
         rating: {
             type: Number,
@@ -47,13 +46,6 @@ const tourSchema = mongoose.Schema(
         timestamps: true,
     }
 );
-
-tourSchema.pre("save", function (next) {
-    if (this.viewed != 0) {
-        this.viewed = 0;
-    }
-    next();
-});
 
 const Tour = mongoose.model("Tour", tourSchema);
 
